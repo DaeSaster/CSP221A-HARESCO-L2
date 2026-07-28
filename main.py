@@ -1,32 +1,34 @@
-def add_student(subjects, name, favorite_subjects):
-    subjects[name] = favorite_subjects
+def save_entry(mapping, key, payload):
+    mapping[key] = payload
 
-roster = {
+def compute_averages(data_map):
+    return {
+        student: sum(scores) / len(scores) 
+        for student, scores in data_map.items()
+    }
+
+grades = {
     "Amara": [92, 88, 95],
     "Leo": [70, 65, 80]
 }
 
-subjects = {}
+save_entry(grades, "John", [85, 90, 88])
+save_entry(grades, "Jacob", [78, 82, 80])
 
-add_student(subjects, "Amara", {"Geometry", "Math", "Science"})
-add_student(subjects, "Leo", {"PE", "Geology", "AI"})
-add_student(subjects, "John", {"Physics", "History", "PE"})
-add_student(subjects, "Jacob", {"Foodtech", "ML", "Java"})
+favorite_subjects = {}
+save_entry(favorite_subjects, "Amara", {"Math", "Science", "Geometry"})
+save_entry(favorite_subjects, "Leo", {"AI", "Geology", "PE"})
+save_entry(favorite_subjects, "John", {"Physics", "History", "PE"})
+save_entry(favorite_subjects, "Jacob", {"Java", "ML", "Foodtech"})
 
-def get_average(scores):
-    return sum(scores) / len(scores)
+averages = compute_averages(grades)
+passed = {name: avg for name, avg in averages.items() if avg > 80}
 
-averages = {
-    name: get_average(scores)
-    for name, scores in roster.items()
-}
-
-top_students = {
-    name: average
-    for name, average in averages.items()
-    if average > 80
-}
-
+print("Average Grades:")
 print(averages)
-print(subjects)
-print(top_students)
+
+print("\nFavorite Subjects:")
+print(favorite_subjects)
+
+print("\nStudents with Average Above 80:")
+print(passed)
