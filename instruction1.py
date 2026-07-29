@@ -21,6 +21,9 @@ add_student(favorite_subjects, "Leo", {"PE", "Geology", "AI"})
 add_student(favorite_subjects, "John", {"Physics", "History", "PE"})
 add_student(favorite_subjects, "Jacob", {"Foodtech", "ML", "Java"})
 
+add_student(student_grades, "John", [85, 90, 78])
+add_student(student_grades, "Jacob", [60, 55, 70])
+
 average_scores = get_average(student_grades)
 
 print(average_scores)
